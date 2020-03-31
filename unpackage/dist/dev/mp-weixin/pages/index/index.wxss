@@ -12,11 +12,21 @@
 	color: #fff;
 }
 .m50{
-	margin-bottom: 50px;
+	margin-top: 10px;
+	position: absolute;
+	height: 90%;
+	width:100%;
+	overflow: scroll;
 }
-.name{
+.otherName{
 	font-weight: bold;
 	color: #979292;
+	font-size: 18px;
+}
+.choseName{
+	font-weight: bold;
+	color: #1a61e4;
+	font-size: 20px;
 }
 .span{
 	padding-left: 30px;
@@ -29,7 +39,7 @@
 }
 .container{
 	padding-left: 10px;
-	min-height:60px;
+	min-height:50px;
 }
 .buttonList{
 	display: -webkit-box;
@@ -37,34 +47,50 @@
 	display: flex;
 	-webkit-flex-wrap: wrap;
 	        flex-wrap: wrap;
-	-webkit-box-pack: justify;
-	-webkit-justify-content: space-between;
-	        justify-content: space-between;
+	-webkit-box-pack: start;
+	-webkit-justify-content: start;
+	        justify-content: start;
 	margin: 10px;
 }
+.closeIcon{
+	position: relative;
+	right: -15px;
+	top: -3px;
+}
 .bottonItem{
-	background-color: #DDAA00;
+	background-color: rgb(235, 167, 20);
 	margin: 5px;
+	color: #fff;
 }
 .button{
 	/* text-align: left; */
 	width:100%;
 	background-color:#fff;
 	color: #706d6d;
+margin-top: 5px;
 }
 .fiedList{
 	 position: fixed;
 	 width: 35%;
-	 height: 120%;
 	 overflow: scroll;
 	 right: 0;
 	 top:0;
+	 max-height: 92%;
 	 background-color: #fff;
+	 z-index: 1;
+	box-shadow: 0px 0px 20px #94ade0;
+	border-radius: 10px;
+}
+.Listbutton{
+	padding:10px ;
+	color:rgb(145, 140, 140);
+	border-bottom: 1px solid #eee;
+	text-align: center;
 }
 .backicon{
 	position: fixed;
 	left: 60%;
-	top:40%;
+	top:0.8%;
 	z-index: 2;
 	background: #007AFF;
 	width: 30px;

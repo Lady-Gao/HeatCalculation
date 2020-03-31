@@ -111,6 +111,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.opstion, function(item, index) {
+    var m0 = _vm.listItemBG(item)
+    return {
+      $orig: _vm.__get_orig(item),
+      m0: m0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -290,12 +306,39 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
 
   data: function data() {
     return {
-      name: 'Fruits',
+      name: '',
       Fruits: [],
       meat: [],
       Nut: [],
@@ -308,7 +351,8 @@ var _default =
       Special: [],
       oli: [],
       opstion: [],
-      Total: '' };
+      Total: '',
+      nowArr: [] };
 
   },
   mounted: function mounted() {
@@ -322,58 +366,74 @@ var _default =
     setName: function setName(val) {
       this.name = val;
       this.opstion = reduction[val];
-
+      this.nowArr = this[this.name];
     },
     //添加一项
     pushItem: function pushItem(item) {
       this[this.name].push(item);
       this.getTotal();
     },
-    //删除最后一项
-    popItem: function popItem(key) {
-      this[key].pop();
+    //删除一项
+    popItem: function popItem(key, item) {
+      var index = this[key].indexOf(item);
+      this[key].splice(index, 1);
       this.getTotal();
     },
     //关闭右侧列表
     closeList: function closeList() {
       this.opstion = [];
+      this.name = '';
+    },
+    listItemBG: function listItemBG(item) {
+      return this[this.name].indexOf(item) == -1 ? '#fff' : '#eee';
     },
     getTotal: function getTotal() {
       var Fruits = 0,meat = 0,Nut = 0,StapleFoodA = 0,StapleFoodB = 0,egg = 0,milk = 0,PeasBeans = 0,Vegetables = 0,Special = 0,oli = 0;
-      this.Fruits.map(function (item) {
-        Fruits += item.value;
-      });
-      this.meat.map(function (item) {
-        meat += item.value;
-      });
-      this.Nut.map(function (item) {
-        Nut += item.value;
-      });
-      this.StapleFoodA.map(function (item) {
-        StapleFoodA += item.value;
-        console.log(item.value, StapleFoodA);
-      });
-      this.StapleFoodB.map(function (item) {
-        StapleFoodB += item.value;
-      });
-      this.egg.map(function (item) {
-        egg += item.value;
-      });
-      this.milk.map(function (item) {
-        milk += item.value;
-      });
-      this.PeasBeans.map(function (item) {
-        PeasBeans += item.value;
-      });
-      this.Vegetables.map(function (item) {
-        Vegetables += item.value;
-      });
-      this.Special.map(function (item) {
-        Special += item.value;
-      });
-      this.oli.map(function (item) {
-        oli += item.value;
-      });
+      // 	this.Fruits.map(item=>{
+      // 		Fruits+=item.value
+      // 	})
+      // 	this.meat.map(item=>{
+      // 		meat+=item.value
+      // 	})
+      // 	this.Nut.map(item=>{
+      // 		Nut+=item.value
+      // 	})
+      // 	this.StapleFoodA.map(item=>{
+      // 		StapleFoodA+=item.value
+      // 		console.log(item.value,StapleFoodA)
+      // 	})
+      // 	this.StapleFoodB.map(item=>{
+      // 		StapleFoodB+=item.value
+      // 	})
+      // 	this.egg.map(item=>{
+      // 		egg+=item.value
+      // 	})
+      // 	this.milk.map(item=>{
+      // 		milk+=item.value
+      // 	})
+      // 	this.PeasBeans.map(item=>{
+      // 		PeasBeans+=item.value
+      // 	})
+      // 	this.Vegetables.map(item=>{
+      // 		Vegetables+=item.value
+      // 	})
+      // 	this.Special.map(item=>{
+      // 		Special+=item.value
+      // 	})
+      // 	this.oli.map(item=>{
+      // 		oli+=item.value
+      // 	})
+      Fruits = this.Fruits.length * 100;
+      meat = this.meat.length * 200;
+      Nut = this.Nut.length * 50;
+      StapleFoodA = this.StapleFoodA.length * 300;
+      StapleFoodB = this.StapleFoodB.length * 150;
+      egg = this.egg.length * 100;
+      milk = this.milk.length * 100;
+      oli = this.oli.length * 50;
+      PeasBeans = this.PeasBeans.length * 50;
+      Vegetables = this.Vegetables.length * 50;
+      Special = this.Special.length * 800;
       this.Total = Fruits + meat + Nut + StapleFoodA + StapleFoodB + egg + milk + PeasBeans + Vegetables + Special + oli;
     } } };exports.default = _default;
 
@@ -408,7 +468,7 @@ var reduction = {
   { type: '柚子', value: 200 },
   { type: '茘枝', value: 150 },
   { type: '波萝', value: 200 },
-  { type: '菠梦蜜', value: 100 },
+  { type: '菠萝蜜', value: 100 },
   { type: '番石榴', value: 150 },
   { type: '人参果', value: 100 },
   { type: '鲜桂圆', value: 200 },
@@ -608,9 +668,9 @@ var reduction = {
 
 
   Special: [
-  { type: '啤酒(100/value克)', value: 50 },
-  { type: '红酒(100/value克)', value: 100 },
-  { type: '白酒(100/value克)', value: 350 },
+  { type: '啤酒(100/克)', value: 50 },
+  { type: '红酒(100/克)', value: 100 },
+  { type: '白酒(100/克)', value: 350 },
   { type: '小汉堡/个', value: 400 },
   { type: '中汉堡/个', value: 600 },
   { type: '大汉堡/个', value: 800 },

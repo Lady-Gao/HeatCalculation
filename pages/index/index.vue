@@ -1,147 +1,174 @@
 <template>
 	<view class='fat' >
-		<button  class='allnum' @click="getTotal">合计：{{Total}}</button>
+	
 
 		<view class='m50'>
-
+				<view  class='backicon' v-if='opstion.length' @click='closeList'>一</view>
+			<view class='fiedList' v-if='opstion.length'>
+				<div class='Listbutton'  size="mini" v-for="(item,index) in opstion" :key='index' @click='pushItem(item)'
+				:style='{"background":listItemBG(item)}'
+				>
+					{{item.type}}  
+					<text style='color:#DDAA00'>{{item.value}}</text>
+				</div>
+			</view>
 			<view class="container">
-				<view  @click='setName("Fruits")' >
-					<span class='name'>水果 </span>
+				<view   @click='setName("Fruits")'>
+					<span :class='name=="Fruits"?"choseName":"otherName"' >水果 </span>
 					<span class='span'>至少两份</span>
 					<span class='hotspan'>热量：<text style='color:#DDAA00'>100</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'    size="mini" v-for="item in Fruits" :key='item'>{{item.type}}</button>
-					<icon v-if='Fruits.length' type="cancel" @click.native='popItem("Fruits")'></icon>
+					<button class='bottonItem'  @click.native='popItem("Fruits",item)'    size="mini" v-for="item in Fruits" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'    type="cancel"></icon>
+					</button>
+					
 				</view>
 			</view>
 
-			<view class="container">
-				<view  @click='setName("meat")' >
-					<span class='name'>肉类 </span>
+			<view class="container" >
+				<view @click='setName("meat")' >
+					<span :class='name=="meat"?"choseName":"otherName"'>肉类 </span>
 					<span class='span'>只限一份</span>
 					<span class='hotspan'>热量：<text style='color:#DDAA00'>200</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in meat" :key='item'>{{item.type}}</button>
-					<icon v-if='meat.length' type="cancel"  @click='popItem("meat")'></icon>
+					<button class='bottonItem' @click='popItem("meat",item)' size="mini" v-for="item in meat" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'   type="cancel"  ></icon>
+					</button>
+					
 				</view>
 		    </view>
 
 			<view class="container">
-				<view  @click='setName("Nut")' >
-					<span class='name'>坚果 </span>
+				<view   @click='setName("Nut")' >
+					<span :class='name=="Nut"?"choseName":"otherName"'>坚果 </span>
 					<span class='span'>只限两份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>50</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in Nut" :key='item'>{{item.type}}</button>
-					<icon v-if='Nut.length' type="cancel"  @click='popItem("Nut")'></icon>
+					<button class='bottonItem'  @click='popItem("Nut",item)' size="mini" v-for="item in Nut" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16' v-if='Nut.length' type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 
-			<view class="container">
-				<view  @click='setName("StapleFoodA")' >
-					<span class='name'>主食A </span>
+			<view class="container" >
+				<view  @click='setName("StapleFoodA")'>
+					<span :class='name=="StapleFoodA"?"choseName":"otherName"'>A类主食 </span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>350</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in StapleFoodA" :key='item'>{{item.type}}</button>
-					<icon v-if='StapleFoodA.length' type="cancel"  @click='popItem("StapleFoodA")'></icon>
+					<button class='bottonItem' @click='popItem("StapleFoodA",item)'  size="mini" v-for="item in StapleFoodA" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'  type="cancel"  ></icon>
+					</button>
+					
 				</view>
 			</view>
 
 			<view class="container">
-				<view  @click='setName("Nut")' >
-					<span class='name'>主食B </span>
+				<view   @click='setName("StapleFoodB")'>
+					<span :class='name=="StapleFoodB"?"choseName":"otherName"'>B类主食 </span>
 					<span class='span'>至少两份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>150</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in StapleFoodB" :key='item'>{{item.type}}</button>
-					<icon v-if='StapleFoodB.length' type="cancel"  @click='popItem("StapleFoodB")'></icon>
+					<button class='bottonItem'  @click='popItem("StapleFoodB",item)' size="mini" v-for="item in StapleFoodB" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 
-			<view class="container">
-				<view  @click='setName("egg")' >
-					<span class='name'>蛋类 </span>
+			<view class="container" >
+				<view  @click='setName("egg")'>
+					<span :class='name=="egg"?"choseName":"otherName"'>蛋类 </span>
 					<span class='span'>至少两份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>100</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in egg" :key='item'>{{item.type}}</button>
-					<icon v-if='egg.length' type="cancel"  @click='popItem("egg")'></icon>
+					<button class='bottonItem'  @click='popItem("egg",item)' size="mini" v-for="item in egg" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 
 			<view class="container">
 					<view  @click='setName("milk")' >
-					<span class='name'>奶类 </span>
+					<span :class='name=="milk"?"choseName":"otherName"'>奶类 </span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>100</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in milk" :key='item'>{{item.type}}</button>
-					<icon v-if='milk.length' type="cancel"  @click='popItem("milk")'></icon>
+					<button class='bottonItem'  @click='popItem("milk",item)' size="mini" v-for="item in milk" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 
-			<view class="container">
-				<view  @click='setName("oli")' >
-					<span class='name'>植物油 </span>
+			<view class="container" >
+				<view  @click='setName("oli")'>
+					<span :class='name=="oli"?"choseName":"otherName"'>植物油 </span>
 					<span class='span'>只限三份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>50</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in oli" :key='item'>{{item.type}}</button>
-					<icon v-if='oli.length' type="cancel"  @click='popItem("oli")'></icon>
+					<button class='bottonItem'  @click='popItem("oli",item)' size="mini" v-for="item in oli" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 
 			<view class="container">
-				<view  @click='setName("PeasBeans")' >
-					<span class='name'>豆类 </span>
+				<view   @click='setName("PeasBeans")'>
+					<span :class='name=="PeasBeans"?"choseName":"otherName"'>豆类 </span>
 					<span class='span'>只限三份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>50</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in PeasBeans" :key='item'>{{item.type}}</button>
-					<icon v-if='PeasBeans.length' type="cancel"  @click='popItem("PeasBeans")'></icon>
+					<button class='bottonItem' @click='popItem("PeasBeans",item)'  size="mini" v-for="item in PeasBeans" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'  type="cancel"  ></icon>
+					</button>
+					
 				</view>
 			</view>
 		
 			<view class="container">
-				<view  @click='setName("Vegetables")' >
-					<span class='name'>蔬菜 </span>
+				<view   @click='setName("Vegetables")'>
+					<span :class='name=="Vegetables"?"choseName":"otherName"'>蔬菜 </span>
 					<span class='span'>至少三份</span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>50</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in Vegetables" :key='item'>{{item.type}}</button>
-					<icon v-if='Vegetables.length' type="cancel"  @click='popItem("Vegetables")'></icon>
+					<button class='bottonItem'  @click='popItem("Vegetables",item)' size="mini" v-for="item in Vegetables" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 	 
-			<view class="container">
-				<view  @click='setName("Special")' >
-					<span class='name'>特殊类 </span>
+			<view class="container" >
+				<view  @click='setName("Special")'>
+					<span :class='name=="Special"?"choseName":"otherName"'>特殊类 </span>
 						<span class='hotspan'>热量：<text style='color:#DDAA00'>800</text>千卡/份</span>
 				</view>
 				<view class='buttonList'>
-					<button class='bottonItem'  size="mini" v-for="item in Special" :key='item'>{{item.type}}</button>
-					<icon v-if='Special.length' type="cancel"  @click='popItem("Special")'></icon>
+					<button class='bottonItem'  @click='popItem("Special",item)' size="mini" v-for="item in Special" :key='item'>{{item.type}}
+						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+					</button>
+					
 				</view>
 			</view>
 		</view>
 
 
 		
-	<view class='fiedList' v-if='opstion.length'>
-		<view  class='backicon' @click='closeList'>一</view>
-		<button class='button'  size="mini" v-for="(item,index) in opstion" :key='index' @click='pushItem(item)'>{{item.type}}  <text style='color:#DDAA00'>{{item.value}}</text></button>
-	</view>
 	
-
+	
+	<button  class='allnum' @click="getTotal">合计：{{Total}}</button>
 		
 	</view>
 </template>
@@ -151,7 +178,7 @@
 	
 		data() {
 			return {
-				name:'Fruits',
+				name:'',
 				Fruits: [],
 				meat: [],
 				Nut: [],
@@ -165,6 +192,7 @@
 				oli: [],
 				opstion:[],
 				Total:'',
+				nowArr:[]
 			}
 		},
 		mounted () {
@@ -178,58 +206,74 @@
 			setName(val){
 				this.name=val
 				this.opstion=reduction[val]
-				
+				this.nowArr=this[this.name]
 			},
 			//添加一项
 			pushItem(item){
 				this[this.name].push(item)
 				this.getTotal()
 			},
-			//删除最后一项
-			popItem(key){
-				this[key].pop()
+			//删除一项
+			popItem(key,item){
+				let index=this[key].indexOf(item)
+				this[key].splice(index,1)
 				this.getTotal()
 			},
 			//关闭右侧列表
 			closeList(){
 				this.opstion=[]
+				this.name=''
+			},
+			listItemBG(item){
+				return this[this.name].indexOf(item)==-1?'#fff':'#eee'
 			},
 			getTotal(){
 				let Fruits=0,meat=0,Nut=0,StapleFoodA=0,StapleFoodB=0,egg=0,milk=0,PeasBeans=0,Vegetables=0,Special=0,oli=0	;
-					this.Fruits.map(item=>{
-						Fruits+=item.value
-					})
-					this.meat.map(item=>{
-						meat+=item.value
-					})
-					this.Nut.map(item=>{
-						Nut+=item.value
-					})
-					this.StapleFoodA.map(item=>{
-						StapleFoodA+=item.value
-						console.log(item.value,StapleFoodA)
-					})
-					this.StapleFoodB.map(item=>{
-						StapleFoodB+=item.value
-					})
-					this.egg.map(item=>{
-						egg+=item.value
-					})
-					this.milk.map(item=>{
-						milk+=item.value
-					})
-					this.PeasBeans.map(item=>{
-						PeasBeans+=item.value
-					})
-					this.Vegetables.map(item=>{
-						Vegetables+=item.value
-					})
-					this.Special.map(item=>{
-						Special+=item.value
-					})
-					this.oli.map(item=>{
-						oli+=item.value
-					})
+				// 	this.Fruits.map(item=>{
+				// 		Fruits+=item.value
+				// 	})
+				// 	this.meat.map(item=>{
+				// 		meat+=item.value
+				// 	})
+				// 	this.Nut.map(item=>{
+				// 		Nut+=item.value
+				// 	})
+				// 	this.StapleFoodA.map(item=>{
+				// 		StapleFoodA+=item.value
+				// 		console.log(item.value,StapleFoodA)
+				// 	})
+				// 	this.StapleFoodB.map(item=>{
+				// 		StapleFoodB+=item.value
+				// 	})
+				// 	this.egg.map(item=>{
+				// 		egg+=item.value
+				// 	})
+				// 	this.milk.map(item=>{
+				// 		milk+=item.value
+				// 	})
+				// 	this.PeasBeans.map(item=>{
+				// 		PeasBeans+=item.value
+				// 	})
+				// 	this.Vegetables.map(item=>{
+				// 		Vegetables+=item.value
+				// 	})
+				// 	this.Special.map(item=>{
+				// 		Special+=item.value
+				// 	})
+				// 	this.oli.map(item=>{
+				// 		oli+=item.value
+				// 	})
+				Fruits=this.Fruits.length*100
+				meat=this.meat.length*200
+				Nut=this.Nut.length*50
+				StapleFoodA=this.StapleFoodA.length*300
+				StapleFoodB=this.StapleFoodB.length*150
+				egg=this.egg.length*100
+				milk=this.milk.length*100
+				oli=this.oli.length*50
+				PeasBeans=this.PeasBeans.length*50
+				Vegetables=this.Vegetables.length*50
+				Special=this.Special.length*800
 					this.Total=Fruits+meat+Nut+StapleFoodA+StapleFoodB+egg+milk+PeasBeans+Vegetables+Special+oli
 				}
 		}
@@ -264,7 +308,7 @@ var reduction ={
     {type:'柚子',value: 200},
     {type:'茘枝',value: 150},
     {type:'波萝',value: 200},
-    {type:'菠梦蜜',value: 100},
+    {type:'菠萝蜜',value: 100},
     {type:'番石榴',value: 150},
     {type:'人参果',value: 100},
     {type:'鲜桂圆',value: 200},
@@ -464,9 +508,9 @@ var reduction ={
     
  },
    Special : [
-     {type:'啤酒(100/value克)',value: 50},
-     {type:'红酒(100/value克)',value: 100},
-     {type:'白酒(100/value克)',value: 350},
+     {type:'啤酒(100/克)',value: 50},
+     {type:'红酒(100/克)',value: 100},
+     {type:'白酒(100/克)',value: 350},
      {type:'小汉堡/个',value: 400},
      {type:'中汉堡/个',value: 600},
      {type:'大汉堡/个',value: 800},
@@ -498,12 +542,22 @@ var reduction ={
 		color: #fff;
 	}
 	.m50{
-		margin-bottom: 50px;
+		margin-top: 10px;
+		position: absolute;
+		height: 90%;
+		width:100%;
+		overflow: scroll;
 		
 	}
-	.name{
+	.otherName{
 		font-weight: bold;
 		color: #979292;
+		font-size: 18px;
+	}
+	.choseName{
+		font-weight: bold;
+		color: #1a61e4;
+		font-size: 20px;
 	}
 	.span{
 		padding-left: 30px;
@@ -516,40 +570,57 @@ var reduction ={
 	}
 	.container{
 		padding-left: 10px;
-		min-height:60px;
+		min-height:50px;
 	}
 	.buttonList{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: start;
 		margin: 10px;
 	
 	}
+	.closeIcon{
+		position: relative;
+		right: -15px;
+		top: -3px;
+
+	}
 	.bottonItem{
-		background-color: #DDAA00;
+		background-color: rgb(235, 167, 20);
 		margin: 5px;
+		color: #fff;
 	}
 	.button{
 		/* text-align: left; */
 		width:100%;
 		background-color:#fff;
 		color: #706d6d;
-
+	margin-top: 5px;
 	}
 
 	.fiedList{
 		 position: fixed;
 		 width: 35%;
-		 height: 120%;
 		 overflow: scroll;
 		 right: 0;
 		 top:0;
+		 max-height: 92%;
 		 background-color: #fff;
+		 z-index: 1;
+		box-shadow: 0px 0px 20px #94ade0;
+		border-radius: 10px;
+
+	}
+	.Listbutton{
+		padding:10px ;
+		color:rgb(145, 140, 140);
+		border-bottom: 1px solid #eee;
+		text-align: center;
 	}
 	.backicon{
 		position: fixed;;
 		left: 60%;
-		top:40%;
+		top:0.8%;
 		z-index: 2;
 		background: #007AFF;
 		width: 30px;
