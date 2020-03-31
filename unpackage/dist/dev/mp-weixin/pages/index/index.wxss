@@ -1,0 +1,77 @@
+
+.fat{
+	font-size: 12;
+}
+.allnum{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #007AFF;
+	z-index: 9;
+	font-weight: bold;
+	color: #fff;
+}
+.m50{
+	margin-bottom: 50px;
+}
+.name{
+	font-weight: bold;
+	color: #979292;
+}
+.span{
+	padding-left: 30px;
+	font-size: 10;
+	color: rgb(216, 210, 210);
+}
+.hotspan{
+	float: right;
+	color: rgb(182, 177, 177);
+}
+.container{
+	padding-left: 10px;
+	min-height:60px;
+}
+.buttonList{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	margin: 10px;
+}
+.bottonItem{
+	background-color: #DDAA00;
+	margin: 5px;
+}
+.button{
+	/* text-align: left; */
+	width:100%;
+	background-color:#fff;
+	color: #706d6d;
+}
+.fiedList{
+	 position: fixed;
+	 width: 35%;
+	 height: 120%;
+	 overflow: scroll;
+	 right: 0;
+	 top:0;
+	 background-color: #fff;
+}
+.backicon{
+	position: fixed;
+	left: 60%;
+	top:40%;
+	z-index: 2;
+	background: #007AFF;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+}
+
