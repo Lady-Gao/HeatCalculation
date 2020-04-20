@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/Calculation/Calculation",
     "pages/index/index"
   ],
   "subPackages": [],
@@ -10,5 +11,5 @@
     "backgroundColor": "#FFFFFF"
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap16.json"
+  "sitemapLocation": "sitemap39.json"
 }

@@ -1,8 +1,14 @@
 {
-	"pages": [{
+	"pages": [
+		{
+		"path": "pages/Calculation/Calculation",
+		"style": {
+			"navigationBarTitleText": "查看热量"
+		}
+	},{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "热量计算"
+			"navigationBarTitleText": "热量计划"
 		}
 	}],
 	"globalStyle": {

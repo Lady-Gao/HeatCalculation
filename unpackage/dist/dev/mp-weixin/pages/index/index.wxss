@@ -2,14 +2,20 @@
 .fat{
 	font-size: 12;
 }
-.allnum{
+.bottombut{
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	background-color: #007AFF;
 	z-index: 9;
-	font-weight: bold;
-	color: #fff;
+}
+.allnum{
+	width: 60%;
+	float: left;
+	color: rgb(235, 167, 20);
+}
+.reset{
+	float: right;
+	width: 40%;
 }
 .m50{
 	margin-top: 10px;
@@ -25,7 +31,7 @@
 }
 .choseName{
 	font-weight: bold;
-	color: #1a61e4;
+	color: rgb(235, 167, 20);
 	font-size: 20px;
 }
 .span{

@@ -20,7 +20,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click.native='popItem("Fruits",item)'    size="mini" v-for="item in Fruits" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'    type="cancel"></icon>
+						<icon class='closeIcon' color='#fff' size='16'    type="cancel"></icon>
 					</button>
 					
 				</view>
@@ -34,7 +34,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem' @click='popItem("meat",item)' size="mini" v-for="item in meat" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'   type="cancel"  ></icon>
+						<icon class='closeIcon' color='#fff' size='16'   type="cancel"  ></icon>
 					</button>
 					
 				</view>
@@ -48,7 +48,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("Nut",item)' size="mini" v-for="item in Nut" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16' v-if='Nut.length' type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16' v-if='Nut.length' type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -61,7 +61,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem' @click='popItem("StapleFoodA",item)'  size="mini" v-for="item in StapleFoodA" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'  type="cancel"  ></icon>
+						<icon class='closeIcon' color='#fff' size='16'  type="cancel"  ></icon>
 					</button>
 					
 				</view>
@@ -75,7 +75,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("StapleFoodB",item)' size="mini" v-for="item in StapleFoodB" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'   type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -89,7 +89,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("egg",item)' size="mini" v-for="item in egg" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'   type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -102,7 +102,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("milk",item)' size="mini" v-for="item in milk" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'  type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -116,7 +116,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("oli",item)' size="mini" v-for="item in oli" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'  type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -130,7 +130,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem' @click='popItem("PeasBeans",item)'  size="mini" v-for="item in PeasBeans" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'  type="cancel"  ></icon>
+						<icon class='closeIcon' color='#fff' size='16'  type="cancel"  ></icon>
 					</button>
 					
 				</view>
@@ -144,7 +144,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("Vegetables",item)' size="mini" v-for="item in Vegetables" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'   type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'   type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -157,7 +157,7 @@
 				</view>
 				<view class='buttonList'>
 					<button class='bottonItem'  @click='popItem("Special",item)' size="mini" v-for="item in Special" :key='item'>{{item.type}}
-						<icon class='closeIcon' size='16'  type="cancel" ></icon>
+						<icon class='closeIcon' color='#fff' size='16'  type="cancel" ></icon>
 					</button>
 					
 				</view>
@@ -167,8 +167,15 @@
 
 		
 	
+	<view class="bottombut">
+		<button  class='allnum'>合计：
+		<text style='color:rgb(235, 167, 20)'>{{Total}}</text>
+	</button>
+		<button  class='reset' @click="reset">
+		<text style='color:#979292'>重置</text>
+	</button>
+	</view>
 	
-	<button  class='allnum' @click="getTotal">合计：{{Total}}</button>
 		
 	</view>
 </template>
@@ -192,7 +199,6 @@
 				oli: [],
 				opstion:[],
 				Total:'',
-				nowArr:[]
 			}
 		},
 		mounted () {
@@ -206,7 +212,6 @@
 			setName(val){
 				this.name=val
 				this.opstion=reduction[val]
-				this.nowArr=this[this.name]
 			},
 			//添加一项
 			pushItem(item){
@@ -275,6 +280,22 @@
 				Vegetables=this.Vegetables.length*50
 				Special=this.Special.length*800
 					this.Total=Fruits+meat+Nut+StapleFoodA+StapleFoodB+egg+milk+PeasBeans+Vegetables+Special+oli
+				},
+				reset(){
+					this.Fruits=[]
+					this.meat=[]
+					this.Nut=[]
+					this.StapleFoodA=[]
+					this.StapleFoodB=[]
+					this.egg=[]
+					this.milk=[]
+					this.oli=[]
+					this.PeasBeans=[]
+					this.Vegetables=[]
+					this.Special=[]
+					this.Total=[]
+					this.name=''
+					this.opstion=[]
 				}
 		}
 	}
@@ -532,14 +553,21 @@ var reduction ={
 	.fat{
 		font-size: 12;
 	}
-	.allnum{
+	.bottombut{
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-		background-color: #007AFF;
 		z-index: 9;
-		font-weight: bold;
-		color: #fff;
+		
+	}
+	.allnum{
+		width: 60%;
+		float: left;
+		color: rgb(235, 167, 20);
+	}
+	.reset{
+		float: right;
+		width: 40%;
 	}
 	.m50{
 		margin-top: 10px;
@@ -556,7 +584,7 @@ var reduction ={
 	}
 	.choseName{
 		font-weight: bold;
-		color: #1a61e4;
+		color: rgb(235, 167, 20);
 		font-size: 20px;
 	}
 	.span{
@@ -583,6 +611,7 @@ var reduction ={
 		position: relative;
 		right: -15px;
 		top: -3px;
+		
 
 	}
 	.bottonItem{
